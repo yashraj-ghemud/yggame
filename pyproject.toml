@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yggame"
+version = "0.2.0"
+description = "A composable, testable 2D game-development component library for Python and Pygame-CE."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Yashraj Sachin Ghemud" }]
+keywords = ["game-development", "pygame", "2d", "components", "ecs", "ui", "physics"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Games/Entertainment",
+]
+dependencies = []
+
+[project.optional-dependencies]
+pygame = ["pygame-ce>=2.5"]
+physics = ["pymunk>=6.8"]
+network = ["websockets>=12"]
+localization = ["babel>=2.15"]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "mypy>=1.10",
+  "ruff>=0.6",
+  "build>=1.2",
+  "twine>=5.0",
+]
+all = [
+  "pygame-ce>=2.5",
+  "pymunk>=6.8",
+  "websockets>=12",
+  "babel>=2.15",
+]
+
+[project.scripts]
+yggame = "yggame.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yashraj-ghemud/yggame"
+Documentation = "https://github.com/yashraj-ghemud/yggame#readme"
+Source = "https://github.com/yashraj-ghemud/yggame"
+Issues = "https://github.com/yashraj-ghemud/yggame/issues"
+Changelog = "https://github.com/yashraj-ghemud/yggame/releases"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yggame"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/examples", "/docs", "/README.md", "/LICENSE", "/NOTICE.md", "/CONTRIBUTING.md", "/CITATION.cff", "/pyproject.toml"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+  "pygame: tests that require pygame-ce",
+  "slow: tests that are intentionally slower than unit tests",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+exclude = ["^examples/"]
+
+[tool.coverage.run]
+source = ["yggame"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
