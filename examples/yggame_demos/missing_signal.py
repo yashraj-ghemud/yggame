@@ -28,7 +28,7 @@ class MissingSignal:
         self.flags: dict[str, object] = {"has_transmitter": False, "trusted_mara": False}
         self.breadcrumbs = Breadcrumbs()
         self.telemetry = Telemetry()
-        self.save_manager = SaveManager(schema=1, game_version="0.2.0")
+        self.save_manager = SaveManager(schema=1, game_version="0.3.0")
         self.content = ContentRegistry()
         self.content.register(ContentType("clue"))
         for clue in ("burned_frequency", "dock_witness", "blueprint"):

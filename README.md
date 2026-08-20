@@ -135,3 +135,7 @@ python -m twine check dist/*
 ```
 
 The package is headless-first and can be installed without Pygame. Optional integrations are available through the `pygame`, `physics`, `network`, `localization`, and `all` extras.
+
+## Production roadmap
+
+Version **0.3.0** integrates the [100% Production-Grade Project Prompt Pack](docs/PRODUCTION_PROMPT_PACK.md), maintained by **Yashraj Sachin Ghemud**. The pack is the canonical roadmap for hardening yggame into a cohesive, composable mini-engine ecosystem. See the [release scope](docs/RELEASE_SCOPE_0.3.0.md) for the distinction between existing runtime capabilities and planned implementation work.
